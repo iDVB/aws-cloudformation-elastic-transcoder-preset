@@ -22,7 +22,7 @@ provider:
         - '*'
 
 functions:
-  pipeline:
+  preset:
     handler: functions/handler.presetHandler
 
 plugins:
