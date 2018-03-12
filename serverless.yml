@@ -7,6 +7,7 @@ custom:
 provider:
   name: aws
   runtime: nodejs6.10
+  variableSyntax: "\\${((?!AWS)[ ~:a-zA-Z0-9._'\",\\-\\/\\(\\)]+?)}"
   iamRoleStatements:
     - Effect: Allow
       Action:
@@ -24,6 +25,18 @@ provider:
 functions:
   preset:
     handler: functions/handler.presetHandler
+
+resources:
+  Outputs:
+    PresetArn:
+      Description: A custom resource for creating Elastic Transcoder Presets
+      Value:
+        Fn::GetAtt: 
+          - PresetLambdaFunction
+          - Arn
+      Export:
+        Name:
+          Fn::Sub: "${AWS::StackName}-arn"
 
 plugins:
   - serverless-webpack
