@@ -3,6 +3,7 @@ import AWS from 'aws-sdk';
 import { Create, Update, Delete } from './Preset';
 import Schema from './schema.json';
 
+// present function
 module.exports.presetHandler = (event, context) => {
   const ElasticTranscoderPreset = CfnLambda({
     Create: Create,
